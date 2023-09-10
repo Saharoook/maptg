@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Map</title>
+</head>
+<body>
+{% csrf_token %}
+       <script>
+       window.addEventListener('load', () => {
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            const postData = async (url, data = {}) => {
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: JSON.stringify(data)
+    });
+    return response.json();
+}
+        postData('', {'lat': position.coords.latitude, 'lon': position.coords.longitude})
+        .then((data) => {
+            console.log(data);
+        });
+        });
+    } else {
+        alert('Геолокации нет');
+    }
+});
+</script>
+</script>
+</body>
+</html>
