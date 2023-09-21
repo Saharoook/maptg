@@ -48,6 +48,16 @@ class Point(models.Model):
         return self.name
 
 
+class PlacePhoto(models.Model):
+
+    class Meta:
+        verbose_name = 'Фото'
+        verbose_name_plural = 'Фото'
+
+    point = models.ForeignKey(Point, on_delete=models.CASCADE, default=None, blank=True, null=True)
+    image = models.ImageField(upload_to='photos/', blank=True)
+
+
 class Tokens(models.Model):
 
     class Meta:

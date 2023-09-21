@@ -19,7 +19,6 @@ class User:
         self.keyboard = None
 
         if self.user is not None:
-            self.keyboard = self.keyboard_definition()
             self.update_username(message)
 
     def is_exist(self):
